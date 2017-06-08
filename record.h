@@ -1,0 +1,31 @@
+//
+// Created by Andrew Lvovsky on 5/31/17.
+//
+
+#ifndef SQL_PARSING_RECORD_H
+#define SQL_PARSING_RECORD_H
+
+
+#include <string>
+#include <vector>
+#include <iomanip>
+#include <iostream>
+
+using namespace std;
+
+class Record
+{
+public:
+    Record() {}
+
+    void add(string entry);
+    void print(int column_width);
+
+    string get_data(int index);
+private:
+    vector<string> _field_data;
+    //bool _remove;
+};
+
+
+#endif //SQL_PARSING_RECORD_H
