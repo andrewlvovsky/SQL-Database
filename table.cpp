@@ -15,7 +15,7 @@ bool Table::import_records(string filename)
     if(file.fail())
         return false;
 
-    getline(file, current_line);
+    getline(file, current_line, char('\r'));
     temp = &current_line[0];
     parsed_data = strtok(temp, ",");
 
@@ -27,20 +27,20 @@ bool Table::import_records(string filename)
 
     for(int i = 0; !file.eof(); i++)
     {
-        getline(file, current_line);
+        getline(file, current_line, char('\r'));
 
         if(current_line == "")      // test in case extra whitespace at end of file
             break;
 
         temp = &current_line[0];    // convert from string to char array
-        parsed_data = strtok(temp, ",");
+        parsed_data = strtok(temp, ",\n\r");
 
         _record.push_back(Record());
 
         for(int j = 0; j < _field_name.size(); j++)
         {
             _record[i].add(string(parsed_data));
-            parsed_data = strtok(nullptr, ","); // nullptr to continue scanning for tokens
+            parsed_data = strtok(nullptr, ",\n\r"); // nullptr to continue scanning for tokens
         }
     }
 
@@ -50,19 +50,14 @@ bool Table::import_records(string filename)
 
 void Table::print_table(int column_width)
 {
-    cout << setw(column_width);
 
     for(int i = 0; i < _field_name.size(); i++)
-        cout << _field_name[i] << setw(column_width);
-
-    cout << endl << endl;
-
-    for(int i = 0; i < _index.size(); i++)
     {
+        cout << _field_name[i];
+        cout << endl << endl;
         _index[i].print(column_width);
+        cout << endl << endl;
     }
-
-    cout << setw(0);
 }
 
 void Table::index_trees()

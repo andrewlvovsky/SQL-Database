@@ -11,6 +11,7 @@ void SQL::parse_commands()
         if(_query.size() > 1)   //checks if valid token comes after command
         {
             Table t(_query[1]);
+            cout << "Importing..." << endl;
             bool file_found = t.import_records(_query[1] + ".csv");
             if (file_found)
             {
@@ -32,7 +33,7 @@ void SQL::parse_commands()
             {
                 if(_query[1] == _table[i].get_table_name())
                 {
-                    _table[i].print_table(50);
+                    _table[i].print_table(20);
                     break;
                 }
                 i++;

@@ -440,7 +440,7 @@ void Set<T>::traverse(int column_width)
         // traverse the subtree rooted with child C[i].
         if (!is_leaf())
             child_ptr[i]->traverse(column_width);
-        cout << data[i] << setw(column_width);
+        cout << data[i];
     }
 
     // Print the subtree rooted with last child
