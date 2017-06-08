@@ -71,3 +71,18 @@ void Table::index_trees()
     }
 }
 
+bool Table::get_values(string field_name_key)
+{
+    int i = 0;
+
+    for(i = 0; i < _field_name.size(); i++)
+    {
+        if(_field_name[i] == field_name_key)
+        {
+            _index[i].print(COLUMN_WIDTH);
+            return true;
+        }
+    }
+
+    return false;
+}

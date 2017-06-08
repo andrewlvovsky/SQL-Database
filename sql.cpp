@@ -81,11 +81,20 @@ void SQL::select_parse_tree()
             _field.push_back(_query[i]);
             i++;
         }
-
+        i++;
         while((_query[i] != "where" && _query[i] != "WHERE") && (i < _query.size()))
         {
             _table_name.push_back(_query[i]);
             i++;
+        }
+
+        for(i = 0; i < _field.size(); i++)
+        {
+            for(int j = 0; j < _table.size(); j++)
+            {
+                if(!(_table[j].get_values(_field[i]))) // magic
+                    cout << "ERROR: No '" << _field[i] << "' column found in table '" << _table_name[j] << "'." << endl;
+            }
         }
     }
     else
@@ -101,10 +110,14 @@ void SQL::select_parse_tree()
         }
         else
         {
-            while ((_query[i] != "where" && _query[i] != "WHERE") && (i < _query.size())) {
+            while ((_query[i] != "where" && _query[i] != "WHERE") && (i < _query.size()))
+            {
                 _table_name.push_back(_query[i]);
                 i++;
             }
         }
     }
+
+    _field.clear();
+    _table_name.clear();
 }

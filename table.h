@@ -12,21 +12,26 @@
 #include <iostream>
 #include "record.h"
 #include "map.h"
+#include "constants.h"
 
 using namespace std;
 
-const int COLUMN_WIDTH = 20;
+
 
 class Table
 {
 public:
     Table() {_table_name = "UNKNOWN TABLE";}
+
     Table(string name) {_table_name = name;}
 
     string get_table_name() {return _table_name;}
 
     bool import_records(string filename);
+
     void print_table(int column_width);
+
+    bool get_values(string field_name_key);
 
     friend ostream& operator <<(ostream& out, Table& print_this)
     {

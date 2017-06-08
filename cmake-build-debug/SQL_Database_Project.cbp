@@ -81,6 +81,9 @@
 		<Unit filename="/Users/Andrew/Developer/CS_8/SQL_Database_Project/array_funcs.h">
 			<Option target="SQL_Database_Project"/>
 		</Unit>
+		<Unit filename="/Users/Andrew/Developer/CS_8/SQL_Database_Project/constants.h">
+			<Option target="SQL_Database_Project"/>
+		</Unit>
 		<Unit filename="/Users/Andrew/Developer/CS_8/SQL_Database_Project/main.cpp">
 			<Option target="SQL_Database_Project"/>
 		</Unit>

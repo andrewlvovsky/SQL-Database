@@ -6,8 +6,10 @@
 #define SQL_PARSING_MAP_H
 
 #include <vector>
-#include "my_set.h"
 #include <iostream>
+#include "my_set.h"
+#include "constants.h"
+
 using namespace std;
 
 template <typename K, typename V>
@@ -29,7 +31,7 @@ struct Pair
 
     friend ostream& operator <<(ostream& out, const Pair<K,V>& print_this)
     {
-        out << "Key: " << print_this._key << " " << "Value: [";
+        out << "Key: " << print_this._key <<  setw(COLUMN_WIDTH) << "Value: ["; // watch out
         for(int i = 0; i < print_this._value.size(); i++) {
 
             if (i == print_this._value.size() - 1)
@@ -56,6 +58,7 @@ public:
     Map() {}
 
     void my_insert(K key, V value);
+
     vector<V> get_values(K key);
 
     void print(int column_width) {_data.traverse(column_width);}
