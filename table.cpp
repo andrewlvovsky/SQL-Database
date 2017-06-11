@@ -33,7 +33,8 @@ bool Table::import_records(string filename)
             break;
 
         temp = &current_line[0];    // convert from string to char array
-        parsed_data = strtok(temp, ",\n\r");
+        parsed_data = strtok(temp, ",\n\r"
+        );
 
         _record.push_back(Record());
 
@@ -71,7 +72,17 @@ void Table::index_trees()
     }
 }
 
-bool Table::get_values(string field_name_key)
+vector<long> Table::search_index_trees(string field_name, string entry_to_search)
+{
+    for(int i = 0; i < _field_name.size(); i++)
+    {
+        if (_field_name[i] == field_name && (_index[i].get_values(entry_to_search).size() > 0))
+            return _index[i].get_values(entry_to_search);
+    }
+    return vector<long>();
+}
+
+bool Table::print_field(string field_name_key)
 {
     int i = 0;
 
@@ -85,4 +96,10 @@ bool Table::get_values(string field_name_key)
     }
 
     return false;
+}
+
+void Table::print_from_records(vector<long> index_for_recs)
+{
+    for(int i = 0; i < index_for_recs.size(); i++)
+        _record[index_for_recs[i]].print(COLUMN_WIDTH);
 }

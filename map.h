@@ -31,7 +31,7 @@ struct Pair
 
     friend ostream& operator <<(ostream& out, const Pair<K,V>& print_this)
     {
-        out << "Key: " << print_this._key <<  setw(COLUMN_WIDTH) << "Value: ["; // watch out
+        out << print_this._key <<  setw(COLUMN_WIDTH) << "["; // watch out
         for(int i = 0; i < print_this._value.size(); i++) {
 
             if (i == print_this._value.size() - 1)
@@ -62,6 +62,8 @@ public:
     vector<V> get_values(K key);
 
     void print(int column_width) {_data.traverse(column_width);}
+
+
 private:
     Set<Pair<K,V> > _data;
 };
@@ -82,7 +84,10 @@ template <typename K, typename V>
 vector<V> Map<K,V>::get_values(K key)
 {
     Pair<K,V>* data = _data.search(Pair<K,V>(key));
-    return data->_value;
+    if(data != nullptr)
+        return data->_value;
+    else
+        return vector<V>();
 }
 
 

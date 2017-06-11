@@ -21,12 +21,15 @@ public:
 
     void tokenize_query(string user_input);
     void parse_commands();
+    void current_tables();
 
 private:
     vector<string> _query;
     vector<Table> _table;
+
     vector<string> _field;
     vector<string> _table_name;
+    vector<string> _condition;
 
     void select_parse_tree();
 };

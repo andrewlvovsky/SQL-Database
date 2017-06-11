@@ -25,6 +25,7 @@ int main()
         getline(cin, user_query);
         sql.tokenize_query(user_query);
         sql.parse_commands();
+        sql.current_tables();
     }
     return 0;
 }
