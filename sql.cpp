@@ -52,6 +52,27 @@ void SQL::parse_commands()
         else
             cout << "ERROR: Select what now?" << endl << endl;
     }
+    else if(_query[0] == "INSERT" || _query[0] == "insert")
+    {
+        if(_query.size() > 1)
+        {
+            _table_name.push_back(_query[2]);
+
+            for(int i = 0; i < _table.size(); i++)
+            {
+                if(_table[i].get_table_name() == _query[2])
+                {
+                    for(int j = 4; j < _query.size(); j++)
+                    {
+                        _temp_fields.push_back(_query[j]);
+                    }
+                    _table[i].insert_into_table(_temp_fields);
+                }
+            }
+        }
+        else
+            cout << "ERROR: Insert what now?" << endl << endl;
+    }
     else
         cout << "ERROR: Invalid command." << endl << endl;
 }
@@ -206,6 +227,7 @@ void SQL::select_parse_tree()
     _field.clear();
     _table_name.clear();
     _condition.clear();
+    _temp_fields.clear();
 }
 
 void SQL::current_tables()

@@ -103,3 +103,12 @@ void Table::print_from_records(vector<long> index_for_recs)
     for(int i = 0; i < index_for_recs.size(); i++)
         _record[index_for_recs[i]].print(COLUMN_WIDTH);
 }
+
+void Table::insert_into_table(vector<string> data)
+{
+    for(int i = 0; i < data.size(); i++)
+        _record[i].add(data[i]);
+
+    for(int i = 0; i < _index.size(); i++)
+        _index[i].my_insert(data[i], _record.size());
+}

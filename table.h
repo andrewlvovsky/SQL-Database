@@ -33,13 +33,15 @@ public:
 
     bool print_field(string field_name_key);
 
-    int get_num_of_fields() {return _field_name.size();}
+    int get_num_of_fields() {return (int) _field_name.size();}
 
     string get_field_name(int index) {return _field_name[index];}
 
     void print_from_records(vector<long> index_for_recs);
 
     vector<long> search_index_trees(string field_name, string entry_to_search);
+
+    void insert_into_table(vector<string> data);
 
     friend ostream& operator <<(ostream& out, Table& print_this)
     {

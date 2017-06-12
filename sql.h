@@ -30,6 +30,7 @@ private:
     vector<string> _field;
     vector<string> _table_name;
     vector<string> _condition;
+    vector<string> _temp_fields;
 
     void select_parse_tree();
 };
